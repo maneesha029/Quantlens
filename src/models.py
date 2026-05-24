@@ -15,12 +15,12 @@ def train_models(X_train, y_train):
         subsample=0.8, colsample_bytree=0.8, random_state=42
     ).fit(X_train, y_train)
 
-    print("✅  All models trained successfully.")
+    print("All models trained successfully.")
     return models
 
 def evaluate_models(models, X_test, y_test):
     for name, model in models.items():
         preds = model.predict(X_test)
         r2 = r2_score(y_test, preds)
-        rmse = mean_squared_error(y_test, preds, squared=False)
+        rmse = mean_squared_error(y_test, preds) ** 0.5
         print(f"{name.upper():10s} | R²: {r2:.4f} | RMSE: {rmse:.5f}")
